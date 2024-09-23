@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>${curso.idCurso != null ? 'Editar Curso' : 'Crear Curso'}</title>
+</head>
+<body>
+<h1 th:text="${curso.idCurso != null ? 'Editar Curso' : 'Crear Curso'}"></h1>
+<form th:action="@{/cursos/guardar}" th:object="${curso}" method="post">
+    <input type="hidden" th:field="*{idCurso}"/>
+    <label for="nombreCurso">Nombre del Curso:</label>
+    <input type="text" th:field="*{nombreCurso}" required/>
+
+    <label for="nivel">Nivel:</label>
+    <input type="text" th:field="*{nivel}" required/>
+
+    <button type="submit">Guardar</button>
+</form>
+<a href="/cursos">Volver a la lista</a>
+</body>
+</html>

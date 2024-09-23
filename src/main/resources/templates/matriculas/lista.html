@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Matrículas</title>
+    <script th:src="@{thema/js/crud.js}"></script>
+</head>
+<body>
+<h1>Lista de Matrículas</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Estudiante</th>
+        <th>Curso</th>
+        <th>Fecha de Matrícula</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="matricula : ${matriculas}">
+        <td th:text="${matricula.estudiante.nombre}"></td>
+        <td th:text="${matricula.curso.nombreCurso}"></td>
+        <td th:text="${#dates.format(matricula.fechaMatricula, 'yyyy-MM-dd')}"></td>
+        <td>
+            <a th:href="@{/matriculas/editar/{id}(id=${matricula.idMatricula})}">Editar</a>
+            <a th:href="@{/matriculas/eliminar/{id}(id=${matricula.idMatricula})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/matriculas/crear">Crear Matrícula</a>
+<script th:src="@{thema/js/crud.js}"></script>
+</body>
+</html>

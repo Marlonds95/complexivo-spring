@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>${estudiante.idEstudiante != null ? 'Editar Estudiante' : 'Crear Estudiante'}</title>
+</head>
+<body>
+<h1 th:text="${estudiante.idEstudiante != null ? 'Editar Estudiante' : 'Crear Estudiante'}"></h1>
+<form th:action="@{/estudiantes/guardar}" th:object="${estudiante}" method="post">
+    <input type="hidden" th:field="*{idEstudiante}"/>
+    <label for="nombre">Nombre:</label>
+    <input type="text" th:field="*{nombre}" required/>
+
+    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+    <input type="date" th:field="*{fechaNacimiento}" required/>
+
+    <label for="direccion">Dirección:</label>
+    <input type="text" th:field="*{direccion}" required/>
+
+    <button type="submit">Guardar</button>
+</form>
+<a href="/estudiantes">Volver a la lista</a>
+</body>
+</html>

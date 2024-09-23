@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>${matricula.idMatricula != null ? 'Editar Matrícula' : 'Crear Matrícula'}</title>
+</head>
+<body>
+<h1 th:text="${matricula.idMatricula != null ? 'Editar Matrícula' : 'Crear Matrícula'}"></h1>
+<form th:action="@{/matriculas/guardar}" th:object="${matricula}" method="post">
+    <input type="hidden" th:field="*{idMatricula}"/>
+    <label for="fechaMatricula">Fecha de Matrícula:</label>
+    <input type="date" th:field="*{fechaMatricula}" required/>
+
+    <label for="estudiante">Estudiante:</label>
+    <select th:field="*{estudiante}" th:object="${estudiantes}">
+        <option th:each="estudiante : ${estudiantes}" th:value="${estudiante.idEstudiante}" th:text="${estudiante.nombre}"></option>
+    </select>
+
+    <label for="curso">Curso:</label>
+    <select th:field="*{curso}" th:object="${cursos}">
+        <option th:each="curso : ${cursos}" th:value="${curso.idCurso}" th:text="${curso.nombreCurso}"></option>
+    </select>
+
+    <button type="submit">Guardar</button>
+</form>
+<a href="/matriculas">Volver a la lista</a>
+</body>
+</html>
